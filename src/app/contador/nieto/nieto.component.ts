@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nieto',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./nieto.component.css']
 })
 export class NietoComponent {
+  @Input() contador!: number;
+  @Output() resetContador = new EventEmitter<number>();
 
+  reset() {
+    this.contador = 0;
+    this.resetContador.emit(this.contador);
+  }
 }

@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HijoComponent {
   @Input() contador!: number;
-  @Output() cambioContador = new EventEmitter();
+  @Output() cambioContador = new EventEmitter<number>();
 
   constructor() {}
 
@@ -18,6 +18,11 @@ export class HijoComponent {
 
   dividir() {
     this.contador /= 2;
+    this.cambioContador.emit(this.contador);
+  }
+
+  resetNieto(nuevoContador: number) {
+    this.contador = nuevoContador;
     this.cambioContador.emit(this.contador);
   }
 
