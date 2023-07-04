@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+//* Como las importaciones pueden crecer mucho, podemos importar todas las funciones a la vez
+import * as actions from './contador/contador.actions';
+
+interface AppState {
+  contador: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -8,17 +16,23 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = '02-redux-app';
 
-  contador: number;
+  contador!: number;
 
-  constructor() {
-    this.contador = 10;
-  }
+  constructor(
+    // * injectamos el servicio store y le añadimos el tipo
+    private store: Store<AppState>
+    ) {
+      // * podemos elegir si suscribirnos en el constructor o en el ngOnInit
+      this.store.subscribe(state =>{
+        this.contador = state.contador;
+      })
+    }
 
   incrementar() {
-    this.contador += 1;
+    this.store.dispatch(actions.incrementar());
   }
 
   reducir() {
-    this.contador -= 1;
+    this.store.dispatch(actions.reducir());
   }
 }
