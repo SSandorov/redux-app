@@ -4,9 +4,7 @@ import { Store } from '@ngrx/store';
 //* Como las importaciones pueden crecer mucho, podemos importar todas las funciones a la vez
 import * as actions from './contador/contador.actions';
 
-interface AppState {
-  contador: number;
-}
+import { AppState } from './app.reducers';
 
 @Component({
   selector: 'app-root',

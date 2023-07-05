@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { incrementar, reducir } from "./contador.actions";
+import * as actions from "./contador.actions";
 
 // * Implementamos a mano el reducer
 // export function contadorReducer(state: number = 10, action: Action) {
@@ -24,6 +24,9 @@ export const initialState = 10;
 
 export const contadorReducer = createReducer(
   initialState,
-  on(incrementar, (state) => state + 1),
-  on(reducir, (state) => state - 1),
+  on(actions.incrementar, (state) => state + 1),
+  on(actions.reducir, (state) => state - 1),
+                                //* desestructuración del objeto props
+  on(actions.multiplicar, (state, { numero }) => state * numero),
+  on(actions.dividir, (state, { numero }) => state / numero),
 );
