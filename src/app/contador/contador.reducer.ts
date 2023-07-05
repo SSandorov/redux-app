@@ -29,4 +29,6 @@ export const contadorReducer = createReducer(
                                 //* desestructuración del objeto props
   on(actions.multiplicar, (state, { numero }) => state * numero),
   on(actions.dividir, (state, { numero }) => state / numero),
+  // on(actions.reset, (state, {contador, inicial}) => state - ( contador - inicial)),
+  on(actions.reset, (state) => initialState),
 );
